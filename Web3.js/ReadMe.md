@@ -1,8 +1,8 @@
 ## Web3.js Tutorial:-
 ### Web3.js:- 
 ```shell
-         :- Web3.js is a collection of libraries that allow you to interact with a local or remote ethereum node using HTTP,IPC or WebSocket.
-         :- Web3.js provides the interface between real world(website) and your smart contracts.
+:- Web3.js is a collection of libraries that allow you to interact with a local or remote ethereum node using HTTP,IPC or WebSocket.
+:- Web3.js provides the interface between real world(website) and your smart contracts.
 ```  
 1. Make package.json file:-
 ```shell
