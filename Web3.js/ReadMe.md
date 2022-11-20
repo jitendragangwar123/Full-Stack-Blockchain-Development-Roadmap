@@ -33,6 +33,6 @@ web3.eth.getBalance("paste the address of the account inside it").then(function(
 
 7.To transfer ether from one account to another:- 
 ```shell
-web3.eth.sendTransaction({from:"paste the address of the account inside it",to:"paste the address of the account inside it",value:web3.utils.toWei("1","ether")});4
+web3.eth.sendTransaction({from:"paste the address of the account inside it",to:"paste the address of the account inside it",value:web3.utils.toWei("1","ether")});
 ```
 
