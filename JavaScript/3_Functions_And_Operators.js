@@ -49,3 +49,23 @@ it('should multiple two numbers', () => {
     assert.equal(product(6,10), 60);
     assert.equal(product(10,22), 220);
 });
+
+
+//Average of the numbers
+function average(a, b, c, d) {
+    const sum=a+b+c+d;
+    const avg=sum/4;
+    return avg
+}
+
+module.exports = average;
+
+//testing 
+const average = require('../average');
+const {assert} = require('chai');
+
+it('should give the average of the numbers', () => {
+    assert.equal(average(2,4,6,8), 5);
+    assert.equal(average(10,30,20,20), 20);
+    assert.equal(average(0,2,7,3), 3);
+});
