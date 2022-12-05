@@ -94,3 +94,33 @@ it('should return a random number between 0 and 1', () => {
     assert.isAtLeast(num2, 0);
     assert.isBelow(num2, 1);
 });
+
+
+/*
+The function Math.random generates a number between 0 and 1, not including 1.
+// randomNumber will be between 0 and 100
+>>const randomNumber = Math.random() * 100;
+// randomNumber will be between 25 and 100
+>>const randomNumber = (Math.random() * 75) + 25;
+*/
+
+
+
+// Math.floor()
+function getFloor(x) {
+    return Math.floor(x);
+}
+
+module.exports = getFloor;
+
+//testing 
+const getFloor = require('../getFloor');
+const {assert} = require('chai');
+
+it('should return the floor of a floating point', () => {
+    assert.equal(getFloor(1.5), 1);
+    assert.equal(getFloor(3.14), 3);
+    assert.equal(getFloor(-12.312), -13);
+});
+
+
