@@ -109,3 +109,38 @@ it('should replace the name', () => {
         assert(true);
     }
 });
+
+//Check Number
+//index.js
+function checkNumber(num) {
+    if(num===0){
+        return "zero";
+    }
+    else if(num<0){
+        return "negative";
+    }
+    else{
+        return "positive";
+    }
+}
+
+module.exports = checkNumber;
+
+//test.js
+const { assert } = require('chai');
+const checkNumber = require('../checkNumber');
+
+describe('checkNumber', () => {
+    it('should return positive', () => {
+        assert.equal(checkNumber(15), 'positive');
+    });
+
+    it('should return negative', () => {
+        assert.equal(checkNumber(-5), 'negative');
+    });
+
+    it('should return zero', () => {
+        assert.equal(checkNumber(0), 'zero');
+    });
+})
+
