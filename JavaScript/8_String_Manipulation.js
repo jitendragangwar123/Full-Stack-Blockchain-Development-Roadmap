@@ -1,4 +1,5 @@
 //String Manipulation
+//index.js
 function startsWithX(string) {
     if(string[0]==='x'){
         return true;
