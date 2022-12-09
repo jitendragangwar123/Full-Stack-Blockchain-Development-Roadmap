@@ -151,3 +151,35 @@ describe('findFirstX', () => {
         assert.equal(findFirstX("should find the first x in a long string"), 22);
     });
 });
+
+
+//index.js
+function splitAtX(string) {
+    let i=string.indexOf("x");
+    let firstPart=string.slice(0,i);
+    let secondPart=string.slice(i+1);
+    if(firstPart.length>secondPart.length){
+        return firstPart;
+    }
+    else{
+        return secondPart;
+    }
+}
+
+module.exports = splitAtX;
+
+//test.js
+const splitAtX = require('../splitAtX');
+const { assert } = require('chai');
+
+describe('splitAtX', () => {
+    it('should handle the first half being longer', () => {
+        assert.equal(splitAtX("Happyxdays"), "Happy");
+        assert.equal(splitAtX("before the x is long"), "before the ");
+    });
+
+    it('should handle the second half being longer', () => {
+        assert.equal(splitAtX("10xDeveloper"), "Developer");
+        assert.equal(splitAtX("before the x is shorter than after"), " is shorter than after");
+    });
+});
