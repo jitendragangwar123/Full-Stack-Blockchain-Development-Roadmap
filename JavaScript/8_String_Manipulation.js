@@ -60,3 +60,36 @@ describe('startsWithX', () => {
         assert.equal(startsWithX("spaceX"), false);
     });
 });
+
+
+//index.js
+function endsWithX(string) {
+    let length=string.length;
+    if(string[length-1]==='x' || string[length-1]==='X'){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
+module.exports = endsWithX;
+
+//test.js
+const endsWithX = require('../endsWithX');
+const { assert } = require('chai');
+
+describe('endsWithX', () => {
+    it('should return true for a string ending with a lower case x', () => {
+        assert.equal(endsWithX("pizzaX"), true);
+    });
+
+    it('should return true for a string ending with an upper case x', () => {
+        assert.equal(endsWithX("pizzaX"), true);
+    });
+
+    it('should return false for a string not ending with x', () => {
+        assert.equal(endsWithX("pizza"), false);
+    });
+});
+
