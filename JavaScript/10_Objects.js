@@ -212,3 +212,38 @@ describe('numberOfPizzas', () => {
         });
     });
 });
+
+
+/*
+const object = { a: 1, b: 2, c: 3 } 
+for(let key in object) {
+    console.log(key);
+}
+
+const object = { a: 1, b: 2, c: 3 } 
+console.log( Object.keys(object) ); // ['a', 'b', 'c']
+console.log( Object.values(object) ); // [1, 2, 3]
+*/
+
+//index.js
+function numberOfKeys(object) {
+    let keyArray=Object.keys(object);
+    return keyArray.length;
+
+}
+
+module.exports = numberOfKeys;
+
+//test.js
+const numberOfKeys = require('../numberOfKeys');
+const { assert } = require('chai');
+
+describe('numberOfKeys', () => {
+    it('should handle an object with 1 property', () => {
+        assert.equal(numberOfKeys({ prop: 1 }), 1);
+    });
+
+    it('should handle an object with 3 properties', () => {
+        assert.equal(numberOfKeys({ a: 1, b: 2, c: 3 }), 3);
+    });
+});
