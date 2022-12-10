@@ -292,3 +292,73 @@ describe('countElements', () => {
         assert.deepEqual(result, {a: 2, b: 2, c: 1, d: 1})
     })
 })
+
+//Player Hand Score
+/*
+function playerHandScore(hand) {
+    const scores = {
+        "K": 4,
+        "Q": 3,
+        "J": 2
+    }
+
+    const handArr = hand.split("");
+    let sum = 0;
+    for(let i = 0; i < handArr.length; i++) {
+        const score = scores[handArr[i]];
+        sum += score;
+    }
+
+    return sum;
+}
+
+module.exports = playerHandScore;
+*/
+
+function playerHandScore(hand) {
+    let sum=0;
+    for(let i=0;i<hand.length;i++){
+        if(hand[i]==='K'){
+            sum+=4;
+        }
+        else if(hand[i]==='Q'){
+            sum+=3;
+        }
+        else{
+            sum+=2;
+        }
+    }
+    return sum;
+}
+
+module.exports = playerHandScore;
+
+//test.js
+const {assert} = require('chai');
+const playerHandScore = require('../playerHandScore');
+
+describe('playerHandScore', () => {
+    it('should return a score of 0', () => {
+        const hand = "";
+        const result = playerHandScore(hand);
+        assert.equal(result, 0);
+    });
+
+    it('should return the total hand score', () => {
+        const hand = "J";
+        const result = playerHandScore(hand);
+        assert.equal(result, 2);
+    });
+
+    it('should return the total hand score', () => {
+        const hand = "QQ";
+        const result = playerHandScore(hand);
+        assert.equal(result, 6);
+    });
+
+    it('should return the total hand score', () => {
+        const hand = "JKQQ";
+        const result = playerHandScore(hand);
+        assert.equal(result, 12);
+    });
+});
