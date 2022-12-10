@@ -145,3 +145,32 @@ describe('countVowels', () => {
         });
     })
 })
+
+//Reverse a String
+function reverse(string) {
+    let revString="";
+    for(let i=string.length-1;i>=0;i--){
+        revString+=string[i];
+    }
+    return revString;
+}
+
+module.exports = reverse;
+
+//test.js
+const { assert } = require('chai');
+const reverse = require('../reverse');
+
+describe('reverse', () => {
+    it('should return an empty string', () => {
+        assert.equal(reverse(""), "");
+    });
+
+    it('should reverse a short string', () => {
+        assert.equal(reverse('cat'), 'tac');
+    });
+
+    it('should reverse a long string', () => {
+        assert.equal(reverse('macintosh'), 'hsotnicam');
+    });
+})
