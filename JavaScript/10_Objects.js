@@ -295,3 +295,21 @@ describe('removeSecret', () => {
         assert.equal(person.secret, undefined);
     });
 });
+
+
+/*
+Object Reference :- It's an important distinction in JavaScript that objects are passed by reference!
+
+function modify(object) {
+    object.message = "Hello World";
+}
+
+
+const store = {
+    name: "Seven Eleven" 
+}
+
+modify(store);
+
+console.log(store.message); // Hello World
+*/
