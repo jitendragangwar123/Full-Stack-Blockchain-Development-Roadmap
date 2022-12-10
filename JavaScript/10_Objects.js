@@ -247,3 +247,51 @@ describe('numberOfKeys', () => {
         assert.equal(numberOfKeys({ a: 1, b: 2, c: 3 }), 3);
     });
 });
+
+
+/*
+const person = {
+    name: "James",
+    age: 22
+}
+
+person.name = "Sally";
+person["age"] = 30;
+
+console.log( person.name ); // Sally
+console.log( person.age ); // 30
+
+const person = { 
+    name: "Bob"
+}
+
+delete person.name;
+
+console.log( person.name ); // undefined
+*/
+
+
+//index.js
+function removeSecret(object) {
+    delete object.secret;
+}
+
+module.exports = removeSecret;
+
+//test.js
+const removeSecret = require('../removeSecret');
+const { assert } = require('chai');
+
+describe('removeSecret', () => {
+    it('should remove the secret', () => {
+        const person = {
+            name: "Alice",
+            secret: "afraid of the dark"
+        }
+
+        removeSecret(person);
+
+        assert.equal(person.name, "Alice");
+        assert.equal(person.secret, undefined);
+    });
+});
