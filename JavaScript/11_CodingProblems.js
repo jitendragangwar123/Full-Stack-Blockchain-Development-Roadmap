@@ -64,3 +64,35 @@ describe('halfValue', () => {
         assert.sameOrderedMembers(actual, [6, 7, 8, 9]);
     });
 })
+
+
+//CountC.js
+function countC(str) {
+    let count=0;
+    for(let i=0;i<str.length;i++){
+        if(str[i]==='c' || str[i]==='C'){
+            count++;
+        }
+    }
+    return count;
+}
+
+module.exports = countC;
+
+//test.js
+const { assert } = require('chai');
+const countC = require('../countC');
+
+describe('countC', () => {
+    it('should return zero', () => {
+        assert.equal(countC('pizza'), 0);
+    });
+
+    it('should handle lowercase c', () => {
+        assert.equal(countC('character'), 2);
+    });
+
+    it('should handle uppercase c', () => {
+        assert.equal(countC('Circus'), 2);
+    });
+})
