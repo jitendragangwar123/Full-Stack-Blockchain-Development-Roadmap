@@ -175,4 +175,53 @@ describe('reverse', () => {
     });
 })
 
+//Palindrome 
+function isPalindrome(string) {
+    let revString="";
+    for(let i=string.length-1;i>=0;i--){
+        revString+=string[i];
+    }
+    if(revString===string){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
+module.exports = isPalindrome;
+
+//test.js
+const { assert } = require('chai');
+const isPalindrome = require('../palindrome');
+
+describe('isPalindrome', () => {
+    describe('is a palindrome', () => {
+        it('should return true', () => {
+            assert.equal(isPalindrome('pop'), true);
+        });
+
+        it('should return true', () => {
+            assert.equal(isPalindrome('kayak'), true);
+        });
+
+        it('should return true', () => {
+            assert.equal(isPalindrome('racecar'), true);
+        });
+    })
+    
+    describe('is not a palindrome', () => {
+        it('should return false', () => {
+            assert.equal(isPalindrome('bear'), false);
+        });
+
+        it('should return false', () => {
+            assert.equal(isPalindrome('pizza'), false);
+        });
+
+        it('should return false', () => {
+            assert.equal(isPalindrome('representative'), false);
+        });
+    })
+})
 
