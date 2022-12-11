@@ -99,3 +99,43 @@ describe('combineToString', () => {
     });
 });
 
+/*
+Boolean Conversion 
+console.log(Boolean(2)); // true
+console.log(Boolean("")); // false
+*/
+
+//index.js
+function isTruthy(a) {
+    if(a){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
+module.exports = isTruthy;
+
+//test.js
+const isTruthy = require('../isTruthy');
+const { assert } = require('chai');
+
+describe('isTruthy', () => {
+    describe('truthy values', () => {
+        it('should be true', () => {
+            assert(isTruthy(1));
+            assert(isTruthy("message"));
+            assert(isTruthy(true));
+            assert(isTruthy({}));
+        });
+    });
+    describe('falsey values', () => {
+        it('should be false', () => {
+            assert.isNotTrue(isTruthy(false));
+            assert.isNotTrue(isTruthy(""));
+            assert.isNotTrue(isTruthy(0));
+            assert.isNotTrue(isTruthy(undefined));
+        });
+    });
+});
