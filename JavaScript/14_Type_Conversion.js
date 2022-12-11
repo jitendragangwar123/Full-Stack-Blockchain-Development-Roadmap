@@ -192,6 +192,7 @@ describe('looseEquals', () => {
 
 
 /*
+Object to JSON :-
 :- JavaScript Object Notation, or JSON, is a format for transferring JavaScript data.
 
 const person = JSON.stringify({ name: "Jim" });
