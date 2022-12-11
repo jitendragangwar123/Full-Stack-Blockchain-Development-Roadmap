@@ -1,3 +1,7 @@
+/*
+:- "||" can be referred to as the Logical OR operator or the default operator.
+:- Similarily, the "&&" operator can be referred to as the Logical AND operator or the guard operator!
+*/
 // index.js
 function willEat(hasPizza, hasDonuts, hasCookies) {
     if(hasPizza || hasDonuts || hasCookies){
@@ -102,3 +106,42 @@ describe('canBreathe', () => {
         });
     });
 });
+
+/*
+const user = { name: 'bob' }
+console.log(user && user.name); // bob
+
+// if we tried to retrieve this property directly, we would hit a run-time exception
+const user2 = undefined;
+console.log(user2.name); // run-time error
+
+const user2 = undefined;
+console.log(user2 && user2.name); // undefined
+*/
+
+//index.js
+function friendName(friend) {
+    return (friend && friend.name);
+}
+
+module.exports = friendName;
+
+//test.js
+const friendName = require('../friendName');
+const { assert } = require('chai');
+
+describe('friendName', () => {
+    describe('when friend is defined', () => {
+        it('should get the name', () => {
+            assert.equal(friendName({ name: 'Bob' }), 'Bob');
+            assert.equal(friendName({ name: 'Jim' }), 'Jim');
+        });
+    });
+    describe('when friend is undefined', () => {
+        it('should return undefined', () => {
+            assert.equal(friendName(), undefined);
+        });
+    });
+});
+
+
