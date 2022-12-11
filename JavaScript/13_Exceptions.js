@@ -32,3 +32,47 @@ describe('throwError', () => {
         assert.equal(ex.constructor, Error);
     });
 });
+
+/*
+//The EISDIR is thrown in Node.JS when the target is a directory when we were expecting it to be a file.
+
+const text = readFile("book");
+try {
+    readFile("book"); 
+}
+catch(ex) {
+    console.log(ex); // EISDIR: illegal operation
+}
+*/
+
+//index.js
+function catchError(fn) {
+    try{
+        fn();
+    }
+    catch(ex){
+
+    }
+}
+
+module.exports = catchError;
+
+//test.js
+const { assert } = require('chai');
+const catchError = require('../catchError');
+
+describe('catchError', () => {
+    it('should catch a thrown error', () => {
+        let ex;
+        try {
+            catchError(() => {
+                throw new Error();
+            });
+        }
+        catch (_ex) {
+            ex = _ex;
+        }
+        assert(!ex, "the error should have been caught");
+    });
+});
+
