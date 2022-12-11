@@ -151,8 +151,7 @@ function carCrossing(aCrossing, bCrossing) {
 
 module.exports = carCrossing;
 
-//test.js
-//Exclusive OR
+//test.js (Exclusive OR)
 const carCrossing = require('../carCrossing');
 const { assert } = require('chai');
 
