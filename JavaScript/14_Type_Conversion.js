@@ -189,3 +189,33 @@ describe('looseEquals', () => {
         });
     });
 });
+
+
+/*
+:- JavaScript Object Notation, or JSON, is a format for transferring JavaScript data.
+
+const person = JSON.stringify({ name: "Jim" });
+console.log(person); // {"name":"Jim"}
+*/
+
+//index.js
+function toJSON(obj) {
+    let res=JSON.stringify(obj);
+    return res;
+    
+}
+
+module.exports = toJSON;
+
+//test.js
+const toJSON = require('../toJSON');
+const { assert } = require('chai');
+
+describe('toJSON', () => {
+    it('should handle a blank object', () => {
+        assert.equal(toJSON({}), "{}");
+    });
+    it('should handle a more complex object', () => {
+        assert.equal(toJSON({ a: 2 }), '{"a":2}');
+    });
+});
