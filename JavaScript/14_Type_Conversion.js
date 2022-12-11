@@ -54,7 +54,20 @@ describe('toNumber', () => {
 });
 
 
-//toString()
+/*
+const a = 123;
+
+console.log(a.toString()); // "123"
+console.log(String(a)); // "123"
+
+console.log(false.toString()); // "false"
+
+console.log(123 + ""); // "123"
+console.log(true + ""); // "true"
+console.log(2 + "2"); // "22"
+*/
+
+//index.js
 function combineToString(a, b) {
     return (a+""+b);
 }
