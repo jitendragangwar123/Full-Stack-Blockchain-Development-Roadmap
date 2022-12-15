@@ -76,3 +76,36 @@ Multiple Arguments Gotcha:-
 //10, 0, [10,20]
 //20, 1, [10,20]
 */
+
+
+//squared.js
+/**
+ * Given a number n, square it.
+ *
+ * @param {number} n 
+ * @return {number} n squared
+ */
+function squared(n) {
+    return n*n;
+    
+}
+
+module.exports = squared;
+
+//test.js
+const squared = require('../squared');
+const {assert} = require('chai');
+
+describe('squared', () => {
+    it('should square 1', () => {
+        assert.equal(squared(1), 1);
+    });
+
+    it('should square 2', () => {
+        assert.equal(squared(2), 4);
+    });
+
+    it('should square 4', () => {
+        assert.equal(squared(4), 16);
+    });
+});
