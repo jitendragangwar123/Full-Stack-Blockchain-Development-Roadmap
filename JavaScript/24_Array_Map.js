@@ -172,6 +172,13 @@ describe('addScore', () => {
 
 
 
+/*
+Array Map Index:-
+[10, 20, 30].map(function(el, i) {
+    console.log(i);
+});
+*/
+
 //addScore.js
 function addScore(players) {
     return players.map((player,i)=>{
