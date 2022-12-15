@@ -112,3 +112,107 @@ describe('new Hero', () => {
     });
 });
 
+
+/*
+Subclasses :-
+           It is possible to create subclasses that extend or inherit behavior from their parent class.
+Ex:-
+class Shape {
+    constructor() {
+        this.position = { x: 0, y: 0 }
+    }
+}
+
+class Rectangle extends Shape {
+    
+}
+const rect = new Rectangle();
+
+console.log(rect.position.x); // 0
+console.log(rect.position.y); // 0
+*/
+
+/*
+New Keyword: Super 
+                The use of the keyword super. When invoked, this calls the constructor on Shape.
+                Subclasses must call super before accessing this inside the constructor or JavaScript will throw a reference error.
+
+Ex:-
+class Shape {
+    constructor() {
+        this.position = { x: 0, y: 0 }
+    }
+}
+
+class Rectangle extends Shape {
+    constructor() {
+        super();
+        this.height = 10;
+        this.width = 5;
+    }
+}
+
+const rectangle = new Rectangle();
+
+console.log(rectangle.position.x); // 0
+console.log(rectangle.height); // 10
+console.log(rectangle.width); // 5
+*/
+
+//Warrior.js
+const Hero = require('./Hero');
+
+class Warrior extends Hero {
+    constructor(){
+        super();
+        this.rage=0;
+    }
+}
+
+module.exports = Warrior;
+
+//Hero.js
+class Hero {
+    constructor() {
+        this.health=50;
+    }
+    takeDamage(damage){
+        this.health-=damage;
+    }
+}
+
+module.exports = Hero;
+
+
+//test.js
+const { assert } = require('chai');
+const Warrior = require('../Warrior');
+const Hero = require('../Hero');
+
+describe('new Warrior', () => {
+    const warrior = new Warrior();
+
+    it('should have 50 health', () => {
+        assert.equal(warrior.health, 50);
+    });
+
+    it('should be a hero', () => {
+        assert(warrior instanceof Hero);
+    });
+
+    it('should have 0 rage', () => {
+        assert.equal(warrior.rage, 0);
+    });
+});
+
+describe('new Hero', () => {
+    const hero = new Hero();
+
+    it('should have 50 health', () => {
+        assert.equal(hero.health, 50);
+    });
+
+    it('should not have rage', () => {
+        assert.equal(hero.rage, undefined);
+    });
+});
