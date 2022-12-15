@@ -78,22 +78,22 @@ Multiple Arguments Gotcha:-
 */
 
 
+//squaredMap.js
+const squared = require('./squared');
+
+function squaredMap(arr) {
+    return arr.map(squared);
+}
+module.exports = squaredMap;
+
 //squared.js
-/**
- * Given a number n, square it.
- *
- * @param {number} n 
- * @return {number} n squared
- */
 function squared(n) {
     return n*n;
-    
 }
-
 module.exports = squared;
 
 //test.js
-const squared = require('../squared');
+/*const squared = require('../squared');
 const {assert} = require('chai');
 
 describe('squared', () => {
@@ -109,3 +109,18 @@ describe('squared', () => {
         assert.equal(squared(4), 16);
     });
 });
+*/
+const squaredMap = require('../squaredMap');
+const { assert } = require('chai');
+
+describe('squaredMap', () => {
+    it('should square a single element', () => {
+        assert.sameOrderedMembers(squaredMap([2]), [4]);
+    });
+
+    it('should square several elements', () => {
+        assert.sameOrderedMembers(squaredMap([2,3,4]), [4,9,16]);
+    });
+});
+
+
