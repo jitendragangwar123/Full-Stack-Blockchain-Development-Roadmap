@@ -170,3 +170,74 @@ describe('Circle', () => {
     });
 }); 
 
+/*
+Move Circle :-
+        Circle prototype inherits methods from the Shape Prototype! Any new circle will have a move method.
+        
+        Circle.prototype = Object.create(Shape.prototype);
+*/
+
+//Circle.js
+const Shape = require('./Shape');
+
+function Circle(x, y, radius) {
+    Shape.call(this,x,y);
+    // store radius on this
+    this.radius=radius;
+    
+}
+
+Circle.prototype=Object.create(Shape.prototype);
+
+module.exports = Circle;
+
+//Shape.js
+// Our Shape "Constructor"
+function Shape(x, y) {
+    // store x and y in this.position
+    this.position={x,y};
+}
+
+Shape.prototype.move=function(x,y){
+    this.position.x+=x;
+    this.position.y+=y;
+    
+}
+module.exports = Shape;
+
+//test.js
+const { assert } = require('chai');
+const Circle = require('../Circle');
+const Shape = require('../Shape');
+
+describe('Circle', () => {
+    let circle;
+    let x = 10;
+    let y = 15;
+    let radius = 15;
+    describe('instance', () => {
+        beforeEach(() => {
+            circle = new Circle(x, y, radius);
+        });
+
+        it('should set the properties', () => {
+            assert.equal(circle.position.x, x);
+            assert.equal(circle.position.y, y);
+            assert.equal(circle.radius, radius);
+        });
+
+        it('should have a move function', () => {
+            assert.equal(typeof circle.move, "function");
+        });
+
+        it('should have move the shape', () => {
+            circle.move(2, 1);
+            assert.equal(circle.position.x, x + 2);
+            assert.equal(circle.position.y, y + 1);
+        });
+
+        it('should refer to the Shape prototype in the prototype chain', () => {
+            assert(Shape.prototype.isPrototypeOf(circle));
+        });
+    });
+}); 
