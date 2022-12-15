@@ -37,10 +37,16 @@ describe('plus one', () => {
     });
 });
 
-//Square Root
+/*
+As well as built-in JavaScript functions:-
+
+const absolutes = [-1, 1, -2, 2].map(Math.abs);
+console.log(absolutes); // [1,1,2,2]
+*/
 //squareRoot.js
 function squareRoot(arr) {
     return arr.map((x)=>Math.sqrt(x));
+    //retur arr.map(Math.sqrt);
 }
 
 module.exports = squareRoot;
@@ -59,3 +65,14 @@ describe('squareRoot', () => {
         assert.sameOrderedMembers([1, 2, 3, 4], squareRoot([1, 4, 9, 16]));
     });
 });
+
+
+/*
+Multiple Arguments Gotcha:-
+[10, 20].map((el, i, arr) => {
+    console.log(el, i, arr);
+});
+
+//10, 0, [10,20]
+//20, 1, [10,20]
+*/
