@@ -367,6 +367,7 @@ describe('Operations Manager', () => {
 });
 
 
+//Undo & Redo 
 //OperationsManager.js
 const Stack = require('./Stack');
 
@@ -464,6 +465,115 @@ describe('Operations Manager', () => {
 
             it('should have an empty set of undos', () => {
                 assert(operationsManager.undos.isEmpty());
+            });
+        });
+    });
+});
+
+
+//Redo All
+//OperationsManager.js
+const Stack = require('./Stack');
+
+class OperationManager {
+    constructor() {
+        this.operations = new Stack();
+        this.undos = new Stack();
+    }
+
+    addOperation(operation) {
+        this.operations.push(operation);
+    }
+
+    undo() {
+        const operation = this.operations.pop();
+        this.undos.push(operation);
+    }
+
+    redo() {
+        const operation = this.undos.pop();
+        this.operations.push(operation);
+    }
+    
+    redoAll(){
+        while(!this.undos.isEmpty()){
+            this.redo();
+        }
+    }
+}
+
+module.exports = OperationManager;
+
+//Stack.js
+const { MAX_STACK_SIZE } = require('./config');
+
+class Stack {
+    constructor() {
+        this.items = [];
+    }
+    push(item) {
+        if(this.items.length===MAX_STACK_SIZE){
+            throw new Error("Stack Overflow!");
+        }
+        this.items.push(item);
+    }
+    pop() {
+        if(this.items.length===0){
+            throw new Error("Stack Underflow!");
+        }
+        return this.items.pop();
+    }
+    isEmpty() {
+        return this.items.length===0;
+        
+    }
+    peek() {
+        return this.items[this.items.length-1];
+    }
+}
+
+module.exports = Stack;
+
+//config.js
+module.exports = { 
+    MAX_STACK_SIZE: 50,
+}
+
+//test.js
+const OperationsManager = require('../OperationsManager');
+const { assert } = require('chai');
+
+let operationsManager;
+describe('Operations Manager', () => {
+    beforeEach(() => {
+        operationsManager = new OperationsManager();
+    });
+
+    describe('after several undos', () => {
+        const operation1 = "OPERATION_1";
+        const operation2 = "OPERATION_2";
+        const operation3 = "OPERATION_3";
+        beforeEach(() => {
+            operationsManager.addOperation(operation1);
+            operationsManager.addOperation(operation2);
+            operationsManager.addOperation(operation3);
+            operationsManager.undo();
+            operationsManager.undo();
+            operationsManager.undo();
+            operationsManager.redoAll();
+        });
+
+        it('should have the last operation at the top of the operation stack', () => {
+            assert.equal(operationsManager.operations.peek(), operation3);
+        });
+
+        describe('after a subsequent undo', () => {
+            beforeEach(() => {
+                operationsManager.undo();
+            });
+
+            it('should have the second operation at the top of the operation stack', () => {
+                assert.equal(operationsManager.operations.peek(), operation2);
             });
         });
     });
