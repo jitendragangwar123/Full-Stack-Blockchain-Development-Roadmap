@@ -365,3 +365,106 @@ describe('Operations Manager', () => {
         assert.equal(operationsManager.operations.peek(), operation, "should have added an operation to operations stack");
     });
 });
+
+
+//OperationsManager.js
+const Stack = require('./Stack');
+
+class OperationManager {
+    constructor() {
+        this.operations = new Stack();
+        this.undos = new Stack();
+    }
+
+    addOperation(operation) {
+        this.operations.push(operation);
+    }
+
+    undo() {
+        const operation = this.operations.pop();
+        this.undos.push(operation);
+    }
+
+    redo() {
+        const operation = this.undos.pop();
+        this.operations.push(operation);
+    }
+}
+
+module.exports = OperationManager;
+
+//Stack.js
+const { MAX_STACK_SIZE } = require('./config');
+
+class Stack {
+    constructor() {
+        this.items = [];
+    }
+    push(item) {
+        if(this.items.length===MAX_STACK_SIZE){
+            throw new Error("Stack Overflow!");
+        }
+        this.items.push(item);
+    }
+    pop() {
+        if(this.items.length===0){
+            throw new Error("Stack Underflow!");
+        }
+        return this.items.pop();
+    }
+    isEmpty() {
+        return this.items.length===0;
+        
+    }
+    peek() {
+        return this.items[this.items.length-1];
+    }
+}
+
+module.exports = Stack;
+
+//config.js
+module.exports = { 
+    MAX_STACK_SIZE: 50,
+}
+
+//test.js
+const OperationsManager = require('../OperationsManager');
+const { assert } = require('chai');
+
+let operationsManager;
+describe('Operations Manager', () => {
+    beforeEach(() => {
+        operationsManager = new OperationsManager();
+    });
+
+    describe('after an undo', () => {
+        const operation1 = "OPERATION_1";
+        beforeEach(() => {
+            operationsManager.addOperation(operation1);
+            operationsManager.undo();
+        });
+
+        it('should have added to the undos', () => {
+            assert.equal(operationsManager.undos.peek(), operation1);
+        });
+
+        it('should have an empty set of operations', () => {
+            assert(operationsManager.operations.isEmpty());
+        });
+
+        describe('after a subsequent redo', () => {
+            beforeEach(() => {
+                operationsManager.redo();
+            });
+
+            it('should have added back to the operations', () => {
+                assert.equal(operationsManager.operations.peek(), operation1);
+            });
+
+            it('should have an empty set of undos', () => {
+                assert(operationsManager.undos.isEmpty());
+            });
+        });
+    });
+});
