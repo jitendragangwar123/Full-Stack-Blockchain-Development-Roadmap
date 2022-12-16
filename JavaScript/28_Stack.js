@@ -273,3 +273,95 @@ describe('Stack', function () {
         });
     });
 });
+
+//UNDO & REDO OPERATIONS
+//OperationsManager.js
+const Stack = require('./Stack');
+
+class OperationManager {
+    constructor() {
+        this.operations=new Stack();
+        this.undos=new Stack();
+    }
+
+    addOperation(operation) {
+        this.operations.push(operation);
+    }
+
+    undo() {
+        
+    }
+
+    redo() {
+        
+    }
+
+    redoAll() {
+        
+    }
+}
+
+module.exports = OperationManager;
+
+//Stack.js
+const { MAX_STACK_SIZE } = require('./config');
+
+class Stack {
+    constructor() {
+        this.items = [];
+    }
+    push(item) {
+        if(this.items.length===MAX_STACK_SIZE){
+            throw new Error("Stack Overflow!");
+        }
+        this.items.push(item);
+    }
+    pop() {
+        if(this.items.length===0){
+            throw new Error("Stack Underflow!");
+        }
+        return this.items.pop();
+    }
+    isEmpty() {
+        return this.items.length===0;
+        
+    }
+    peek() {
+        return this.items[this.items.length-1];
+    }
+}
+
+module.exports = Stack;
+
+//config.js
+module.exports = { 
+    MAX_STACK_SIZE: 50,
+}
+
+//test.js
+const Stack = require('../Stack');
+const OperationsManager = require('../OperationsManager');
+const { assert } = require('chai');
+
+const operation = "OPERATION";
+let operationsManager;
+describe('Operations Manager', () => {
+    beforeEach(() => {
+        operationsManager = new OperationsManager();
+    });
+
+    it('should have an undos stack', () => {
+        assert(operationsManager.undos, "Could not find an undos property on OperationsManager");
+        assert(operationsManager.undos instanceof Stack, "Expected undos to be an instance of Stack");
+    });
+
+    it('should have an operations stack', () => {
+        assert(operationsManager.operations, "Could not find an operations property on OperationsManager");
+        assert(operationsManager.operations instanceof Stack, "Expected operations to be an instance of Stack");
+    });
+
+    it('should allow us to add an operation', () => {
+        operationsManager.addOperation(operation);
+        assert.equal(operationsManager.operations.peek(), operation, "should have added an operation to operations stack");
+    });
+});
