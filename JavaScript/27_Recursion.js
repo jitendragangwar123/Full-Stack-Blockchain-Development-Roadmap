@@ -61,5 +61,17 @@ describe('factorial', () => {
         it('should handle 2', () => {
             assert.equal(factorial(2), 2);
         });
+
+        it('should handle 3', () => {
+            assert.equal(factorial(3), 6);
+        });
+
+        it('should handle 4', () => {
+            assert.equal(factorial(4), 24);
+        });
+
+        it('should handle 5', () => {
+            assert.equal(factorial(5), 120);
+        });
     });
 });
