@@ -75,3 +75,82 @@ describe('LinkedList instance', () => {
         assert.strictEqual(list.head, null);
     });
 });
+
+
+/*
+Add First Node:-
+Ex:-
+const linkedList = new LinkedList();
+
+linkedList.addFirst( new Node(1) );
+
+console.log(linkedList.head.data); // 1
+
+linkedList.addFirst( new Node(2) );
+
+console.log(linkedList.head.data); // 2
+console.log(linkedList.head.next.data); // 1
+*/
+
+//LinkedList.js
+class LinkedList {
+    constructor(){
+        this.head=null;
+    }
+
+    addFirst(node){
+        node.next=this.head;
+        this.head=node;
+    }
+}
+
+module.exports = LinkedList;
+
+//Node.js
+class Node {
+    constructor(data){
+        this.data=data;
+        this.next=null;
+    }
+}
+
+module.exports = Node;
+
+//test.js
+const LinkedList = require('../LinkedList');
+const Node = require('../Node');
+const { assert } = require('chai');
+
+describe('LinkedList instance', () => {
+    const list = new LinkedList();
+
+    it('should have a null head', () => {
+        assert.strictEqual(list.head, null);
+    });
+
+    describe('after adding a new node', () => {
+        const node1 = new Node(1);
+        before(() => {
+            list.addFirst(node1);
+        });
+
+        it('should set the head to the new node', () => {
+            assert.equal(list.head, node1);
+        });
+
+        describe('after adding another node', () => {
+            const node2 = new Node(2);
+            before(() => {
+                list.addFirst(node2);
+            });
+
+            it('should set the head to the new node', () => {
+                assert.equal(list.head, node2);
+            });
+
+            it('should set the next on the new head', () => {
+                assert.equal(node2.next, node1);
+            });
+        });
+    });
+}); 
