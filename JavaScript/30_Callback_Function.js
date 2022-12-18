@@ -97,3 +97,45 @@ describe('Run Callback Async', () => {
         }, 1500);
     });
 });
+
+
+/*
+Dialog Callback:-
+            onClose - This method will take a callback function as an argument and store it on our Dialog instance.
+            close - This function will be used to close the dialog. When we close the dialog, we'll want to call the callbackFunction.
+
+*/
+
+//dialogCallback.js
+class Dialog {
+    constructor(){
+
+    }
+    close() {
+        // invoke the callback
+        this.callbackFunction();
+    }
+    onClose(callbackFunction) {
+        // store the callback
+        this.callbackFunction=callbackFunction;
+    }
+
+}
+
+module.exports = Dialog;
+
+//test.js
+const Dialog = require('../dialogCallback');
+const { assert } = require('chai');
+
+describe('Dialog', () => {
+    it('should allow me to register a callback', () => {
+        const dialog = new Dialog();
+        let called = false;
+        dialog.onClose(() => {
+            called = true;
+        });
+        dialog.close();
+        assert(called, "Callback was not called after close");
+    });
+});
