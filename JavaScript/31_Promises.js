@@ -221,3 +221,41 @@ describe('successful order', () => {
     });
 });
 
+
+/*
+Creating a Promise:-
+                 Most modern JavaScript environments have a built-in Promise object that can be use to create a new Promise:
+ Ex:-
+ const promise = new Promise(function(resolve, reject) {
+    resolve('resolve successful!');
+});
+                 
+*/
+
+//timer.js
+function timer() {
+    return new Promise((resolve,reject)=>{
+        resolve();
+    });
+}
+
+module.exports = timer;
+
+//test.js
+const timer = require('../timer');
+const { assert } = require('chai');
+
+describe('timer', () => {
+    const promise = timer();
+
+    it('should return a promise', () => {
+        assert.equal(promise instanceof Promise, true);
+    });
+
+    it('should resolve', async () => {
+        await promise;
+        assert(true);
+    }).timeout(1000);
+});
+
+
