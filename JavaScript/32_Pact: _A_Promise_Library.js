@@ -82,3 +82,50 @@ describe('Pact', function () {
         });
     });
 });
+
+//Pact.js
+class Pact {
+    constructor(fn) {
+        this.resolve = (value) => {
+            this.thenFn(value);
+        }
+        this.reject = () => {
+            
+        }
+        fn(this.resolve, this.reject);
+    }
+    then(_then) {
+        this.thenFn = _then;
+    }
+    catch() {
+        
+    }
+}
+
+module.exports = Pact;
+
+//test.js
+const Pact = require('../Pact');
+const { assert } = require('chai');
+
+describe('Pact', function () {
+    it('should call the .then callback', (done) => {
+        new Pact((resolve, reject) => {
+            setTimeout(resolve, 100);
+        }).then((resolved) => {
+            assert(true);
+            done();
+        });
+    });
+
+    it('should call the .then callback with the resolved value', (done) => {
+        new Pact((resolve, reject) => {
+            setTimeout(() => {
+                resolve(42);
+            }, 100);
+        }).then((resolved) => {
+            assert.equal(resolved, 42);
+            done();
+        });
+    });
+});
