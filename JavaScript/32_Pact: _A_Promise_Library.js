@@ -83,22 +83,91 @@ describe('Pact', function () {
     });
 });
 
+//Catch the rejection
 //Pact.js
 class Pact {
     constructor(fn) {
         this.resolve = (value) => {
             this.thenFn(value);
         }
-        this.reject = () => {
-            
+        this.reject = (value) => {
+            this.catchFn(value);
         }
         fn(this.resolve, this.reject);
     }
     then(_then) {
         this.thenFn = _then;
     }
-    catch() {
-        
+    catch(_catch) {
+        this.catchFn = _catch;
+    }
+}
+
+module.exports = Pact;
+
+//test.js
+// const Pact = require('../Pact');
+// const { assert } = require('chai');
+
+// describe('Pact', function () {
+//     it('should call the .then callback', (done) => {
+//         new Pact((resolve, reject) => {
+//             setTimeout(resolve, 100);
+//         }).then((resolved) => {
+//             assert(true);
+//             done();
+//         });
+//     });
+
+//     it('should call the .then callback with the resolved value', (done) => {
+//         new Pact((resolve, reject) => {
+//             setTimeout(() => {
+//                 resolve(42);
+//             }, 100);
+//         }).then((resolved) => {
+//             assert.equal(resolved, 42);
+//             done();
+//         });
+//     });
+// });
+
+const Pact = require('../Pact');
+const { assert } = require('chai');
+
+describe('Pact', function () {
+    it('should call a .catch function with the reject value after a timeout', (done) => {
+        let value;
+        new Pact((resolve, reject) => {
+            setTimeout(() => {
+                reject(42);
+            }, 100);
+        }).catch((err) => {
+            assert.equal(err, 42);
+            done();
+        });
+    });
+});
+
+
+//Multiple Callbacks
+//Pact.js
+class Pact {
+    constructor(fn) {
+        this.thenFns = [];
+        this.catchFns = [];
+        this.resolve = (value) => {
+            this.thenFns.forEach((fn) => fn(value));
+        }
+        this.reject = (value) => {
+            this.catchFns.forEach((fn) => fn(value));
+        }
+        fn(this.resolve, this.reject);
+    }
+    then(_then) {
+        this.thenFns.push(_then);
+    }
+    catch(_catch) {
+        this.catchFns.push(_catch);
     }
 }
 
@@ -109,23 +178,48 @@ const Pact = require('../Pact');
 const { assert } = require('chai');
 
 describe('Pact', function () {
-    it('should call the .then callback', (done) => {
-        new Pact((resolve, reject) => {
-            setTimeout(resolve, 100);
-        }).then((resolved) => {
-            assert(true);
-            done();
-        });
-    });
-
-    it('should call the .then callback with the resolved value', (done) => {
-        new Pact((resolve, reject) => {
+    it('should run both .then callbacks', (done) => {
+        let val1;
+        let val2;
+        let pact = new Pact((resolve, reject) => {
             setTimeout(() => {
                 resolve(42);
             }, 100);
-        }).then((resolved) => {
-            assert.equal(resolved, 42);
-            done();
         });
+        pact.then((val) => {
+            val1 = val;
+        });
+        pact.then((val) => {
+            val2 = val;
+        });
+        setTimeout(() => {
+            assert.equal(val1, 42, "First then callback did not succeed");
+            assert.equal(val2, 42, "Second then callback did not suceeed");
+            done();
+        }, 150)
+    });
+
+    it('should run both .catch callbacks', (done) => {
+        let val1;
+        let val2;
+        let pact = new Pact((resolve, reject) => {
+            setTimeout(() => {
+                reject(42);
+            }, 100);
+        });
+        pact.catch((val) => {
+            val1 = val;
+        });
+        pact.catch((val) => {
+            val2 = val;
+        });
+        setTimeout(() => {
+            assert.equal(val1, 42, "First catch callback did not succeed");
+            assert.equal(val2, 42, "Second catch callback did not suceeed");
+            done();
+        }, 150)
     });
 });
+
+
+
