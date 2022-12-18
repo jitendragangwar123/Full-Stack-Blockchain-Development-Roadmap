@@ -1,6 +1,5 @@
 //index.js
 const http = require('http');
-
 const server = http.createServer(function(request, response) {
   response.statusCode = 200;
   response.setHeader('Content-Type', 'text/plain');
@@ -46,7 +45,7 @@ const server = http.createServer((request, response) => {
   });
 
 //index.html
-<!DOCTYPE html>
+/*<DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -57,11 +56,13 @@ const server = http.createServer((request, response) => {
     Hello Node Js!
   </body>
 </html>
+*/
 
 //style.css
-body {
+/*body {
     background-color: rgb(198, 122, 122);
     color: rgb(4, 255, 0);
     text-align: center;
     font-size: 40px;
   }
+  */
