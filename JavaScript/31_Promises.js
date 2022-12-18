@@ -79,7 +79,21 @@ describe('new order', () => {
     });
 
     describe('after calling request', () => {
-        const request = { id: 1, burgers: 1 };
+        const request = { id: 1, burgers: 1 };const timer = require('../timer');
+const { assert } = require('chai');
+
+describe('timer', () => {
+    const promise = timer();
+
+    it('should return a promise', () => {
+        assert.equal(promise instanceof Promise, true);
+    });
+
+    it('should resolve', async () => {
+        await promise;
+        assert(true);
+    }).timeout(1000);
+});
         before(() => {
             order.request(request);
         });
@@ -258,4 +272,42 @@ describe('timer', () => {
     }).timeout(1000);
 });
 
+//Asynchronous Timer
+//timer.js
+function timer() {
+    return new Promise((resolve,reject)=>{
+        setTimeout(()=>{
+            resolve();
+        },1000);
+    });
+}
 
+module.exports = timer;
+
+//test.js
+const timer = require('../timer');
+const { assert } = require('chai');
+
+describe('timer', () => {
+    const promise = timer();
+
+    it('should return a promise', () => {
+        assert.equal(promise instanceof Promise, true);
+    });
+
+    it('should not resolve within 500 milliseconds', (done) => {
+        let resolved = false;
+        promise.then(() => {
+            resolved = true;
+        });
+        setTimeout(() => {
+            assert(!resolved);
+            done();
+        }, 500);
+    });
+
+    it('should resolve within 1500 milliseconds', async () => {
+        await promise;
+        assert(true);
+    }).timeout(1500);
+});
