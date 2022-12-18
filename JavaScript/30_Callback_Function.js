@@ -139,3 +139,48 @@ describe('Dialog', () => {
         assert(called, "Callback was not called after close");
     });
 });
+
+
+//Multiple Dialog Callbacks
+//dialogCallback.js
+class Dialog {
+    constructor() {
+        this.callbackFunctions = [];
+    }
+    close() {
+        this.callbackFunctions.forEach((callbackFn) => {
+            callbackFn();
+        });
+    }
+    onClose(callbackFunction) {
+        this.callbackFunctions.push(callbackFunction);
+    }
+}
+
+module.exports = Dialog;
+
+//test.js
+const Dialog = require('../dialogCallback');
+const { assert } = require('chai');
+
+describe('Dialog', () => {
+    it('should allow registering of multiple callbacks', () => {
+        const dialog = new Dialog();
+        let calledA = 0;
+        let calledB = 0;
+        let calledC = 0;
+        dialog.onClose(() => {
+            calledA++;
+        });
+        dialog.onClose(() => {
+            calledB++;
+        });
+        dialog.onClose(() => {
+            calledC++;
+        });
+        dialog.close();
+        assert.equal(calledA, 1, "First Callback was not called once after close");
+        assert.equal(calledB, 1, "Second Callback was not called once after close");
+        assert.equal(calledC, 1, "Third Callback was not called once after close");
+    });
+});
