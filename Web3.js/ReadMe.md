@@ -14,7 +14,11 @@ npm install --save web3
 ```
 3.To import web3:- 
 ```shell
-let Web3 =require("web3");
+node //Open node terminal
+>>let Web3 =require("web3");
+>>Web3
+>>console.clear() //clear the screen
+
 ```
 4.To connect with Ganache:- 
 ```shell
