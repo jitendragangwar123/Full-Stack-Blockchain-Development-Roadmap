@@ -40,3 +40,14 @@ web3.eth.getBalance("paste the address of the account inside it").then(function(
 web3.eth.sendTransaction({from:"paste the address of the account inside it",to:"paste the address of the account inside it",value:web3.utils.toWei("1","ether")});
 ```
 
+
+```shell
+Browser interaction with Smart Contract using Web3.js
+1. Install te below package :-
+>>npm install web3.js-browser
+
+2.Make the index.html file and put this package in it.
+3.Open index.html and start the ganache.
+4.You can interact with your smart contract by using browser console no need to create the class Web3.
+>> web3.eth.getAccounts().then(console.log); //to get all the accounts of ganache blockchain.
+```
