@@ -15,14 +15,14 @@ npm install --save web3
 3.To import web3:- 
 ```shell
 node //Open node terminal
->>let Web3 =require("web3");
+>>let Web3 =require("web3");  //Create the class "Web3"
 >>Web3
 >>console.clear() //clear the screen
 
 ```
 4.To connect with Ganache:- 
 ```shell
-let web3 = new Web3(new Web3.providers.HttpProvider("HTTP://127.0.0.1:7545")); [Remember that the ganache must be running]
+let web3 = new Web3(new Web3.providers.HttpProvider("HTTP://127.0.0.1:7545")); [Remember that the ganache must be running](>>ganache-cli)
 ```
 
 5.To get the balance of an account:- 
