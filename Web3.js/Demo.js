@@ -27,7 +27,6 @@ var input = {
       },
     },
   };
-  
   var output = JSON.parse(solc.compile(JSON.stringify(input)));
   console.log("Output: ", output);
   
@@ -53,6 +52,6 @@ var input = {
         console.log("Initial Value:",data);
       });
     });
-  });
+ });
   
   
