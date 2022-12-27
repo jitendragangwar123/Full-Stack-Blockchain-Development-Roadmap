@@ -1,6 +1,5 @@
 //SPDX-Licence-Identifier: UNLICENSED
 pragma solidity ^0.8.0;
-
 contract Demo{
     uint public x=10;
     function setValue(uint _x) public{
@@ -9,7 +8,8 @@ contract Demo{
 }
 
 
-//Interact with Web3.js
+//interact with Web3.js
+
 /* Start the ganache-cli and select the ganache for web3 provider in Remix IDE before deploying the samart contract. 
 > let Web3=require("web3");
 > let web3 = new Web3(new Web3.providers.HttpProvider("HTTP://127.0.0.1:8545"));
