@@ -35,6 +35,41 @@
       "artifacts": [
         "Token"
       ]
+    },
+    "/home/jitendra-rv/Full-Stack-Blockchain-Development-Roadmap/HardhatTutorial/contracts/Token.sol": {
+      "lastModificationDate": 1674410988935,
+      "contentHash": "34cf7dc508dbf1379e3e0a679f503a94",
+      "sourceName": "contracts/Token.sol",
+      "solcConfig": {
+        "version": "0.8.17",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "0.8.17"
+      ],
+      "artifacts": [
+        "Token"
+      ]
     }
   }
 }
