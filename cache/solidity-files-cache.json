@@ -37,9 +37,46 @@
       ]
     },
     "/home/jitendra-rv/Full-Stack-Blockchain-Development-Roadmap/HardhatTutorial/contracts/Token.sol": {
-      "lastModificationDate": 1674410988935,
-      "contentHash": "34cf7dc508dbf1379e3e0a679f503a94",
+      "lastModificationDate": 1674456765531,
+      "contentHash": "fde3834d2576d0b69bdb9d768897177f",
       "sourceName": "contracts/Token.sol",
+      "solcConfig": {
+        "version": "0.8.17",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "hardhat/console.sol"
+      ],
+      "versionPragmas": [
+        "0.8.17"
+      ],
+      "artifacts": [
+        "Token"
+      ]
+    },
+    "/home/jitendra-rv/Full-Stack-Blockchain-Development-Roadmap/HardhatTutorial/node_modules/hardhat/console.sol": {
+      "lastModificationDate": 1674410990991,
+      "contentHash": "4ff3cd2f6272c9a6516e9ee4f2b967d3",
+      "sourceName": "hardhat/console.sol",
       "solcConfig": {
         "version": "0.8.17",
         "settings": {
@@ -65,10 +102,10 @@
       },
       "imports": [],
       "versionPragmas": [
-        "0.8.17"
+        ">= 0.4.22 <0.9.0"
       ],
       "artifacts": [
-        "Token"
+        "console"
       ]
     }
   }
