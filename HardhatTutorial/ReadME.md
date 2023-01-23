@@ -11,8 +11,7 @@ To compile the smart contract -
 >>npx hardhat compile
 
 ```
-```shell 
+
 <li class="masthead__menu-item">
     <a href="https://ethereum-waffle.readthedocs.io/en/latest/matchers.html">Chai Matchers</a>
 </li>
-```
