@@ -1,8 +1,8 @@
 /** @type import('hardhat/config').HardhatUserConfig */
 require("@nomiclabs/hardhat-waffle");
 
-const ALCHEMY_API_KEY = "uduRhmNnl8azihjkwopZ_kOPu1vO9npn";
-const GOERLI_PRIVATE_KEY ="d23e50e8dd7757e91062108e5eac0998ecd76138e80fb592dc963aa3592b60a8";
+const ALCHEMY_API_KEY = "Import Alchemy API Key";
+const GOERLI_PRIVATE_KEY ="Import Goerli Account Private Key";
 module.exports = {
   solidity: "0.8.17",
 

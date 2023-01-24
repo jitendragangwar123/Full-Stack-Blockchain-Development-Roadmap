@@ -15,11 +15,11 @@ describe("Token Contract ",function(){
     });
 
     describe("Deployment",function(){
-        it("Should set the right owner",async function(){
+        it("Should set the right owner ",async function(){
             expect(await jacobToken.owner()).to.equal(owner.address);
         });
 
-        it("Should assign the totalSupply to the owner",async function(){
+        it("Should assign the totalSupply to the owner ",async function(){
             const totalBalance=await jacobToken.balanceOf(owner.address);
             expect(await jacobToken.totalSupply()).to.equal(totalBalance);
         });
