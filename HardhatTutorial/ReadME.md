@@ -14,7 +14,17 @@ To deploy the smart contract -
 To deploy the smart contract on Goerli Network -
 >>npx hardhat run scripts/deploy.js --network goerli
 ```
+```shell
+To verify the contract :-
+npx hardhat verify \
+--contract "contracts/MyToken.sol:GFGToken" \
+--network mumbai 0x5bB6F8Fe1EE93238C18C7f40BF16f6E93Fb64Ef2
 
+Install the following packages :-
+npm install --save-dev @nomiclabs/hardhat-etherscan
+npx hardhat run scripts/deploy.js --network mumbai
+npm install @nomiclabs/hardhat-waffle
+```
 <li class="masthead__menu-item">
     <a href="https://ethereum-waffle.readthedocs.io/en/latest/matchers.html">Chai Matchers</a>
 </li>
