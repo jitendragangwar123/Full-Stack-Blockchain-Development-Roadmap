@@ -23,6 +23,9 @@ To deploy the smart contract on localhost :-
 To deploy the smart contract on Goerli Network :-
 >>npx hardhat run scripts/deploy.js --network goerli
 
+To verify the smart contract :-
+>>npx hardhat verify 0xAD2c0B3E710300B2809308517C84cE486aA2e7c7 RVNFT RVN --network goerli
+
 ```
 ```shell
 To verify the contract :-
