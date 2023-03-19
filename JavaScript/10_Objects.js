@@ -66,6 +66,8 @@ describe('order', () => {
     });
 });
 
+
+
 //index.js
 function numberOfPizzas(orders) {
     let sum=0;
@@ -110,7 +112,7 @@ const ORDER_TYPES = {
     PIZZA : 0,
     WINGS : 1,
     SALAD : 3,
-    BURGER : 4,
+    BURGER : 9,
     FRIES : 6,
     SANDWICH :7
 }
@@ -159,7 +161,7 @@ const ORDER_TYPES = {
     PIZZA : 0,
     WINGS : 1,
     SALAD : 3,
-    BURGER : 4,
+    BURGER : 9,
     FRIES : 6,
     SANDWICH : 7
 }
