@@ -3,7 +3,7 @@ This repository serves as a comprehensive roadmap for Full-Stack Ethereum Blockc
 
 ## Table Of Contents
 - [JavaScript](https://github.com/jitendragangwar123/Full-Stack-Blockchain-Development-Roadmap/tree/main/JavaScript)
-- Web3.js
+- [Web3.js](https://github.com/jitendragangwar123/Full-Stack-Blockchain-Development-Roadmap/tree/main/Web3.js)
 - Ether.js
 - HardhatTutorial
 - Hardhat Testing
