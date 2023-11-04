@@ -10,5 +10,3 @@ This repository serves as a comprehensive roadmap for Full-Stack Ethereum Blockc
 
 ## Contributor
 ![GitHub Contributors Image](https://contrib.rocks/image?repo=jitendragangwar123/Full-Stack-Blockchain-Development-Roadmap)
-
-
